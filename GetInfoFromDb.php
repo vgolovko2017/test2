@@ -15,15 +15,15 @@
 
 		public function getExchangeByDate($date = false) {
 			if ($date == false) {
-				echo "Error: incorrect input parameters";
+				echo json_encode(array("Error" => "Incorrect input parameters"));
 				return false;
 			}
 
 			if (!$this->dbh) {
-				echo "Error: could not connect to db";
+				echo json_encode(array("Error" => "Could not connect to db"));
 				return false;
 			}
-		
+
 			try {
 				$stmt = $this->dbh->prepare("select * from currex where `cdate` = '$date'");
 				$stmt->execute();
@@ -31,7 +31,7 @@
 
 				echo json_encode($rs);
 			} catch (PDOException $e) {
-				echo "Error!: " . $e->getMessage();
+				echo json_encode(array("Error" => $e->getMessage()));
 				return false;
 			}
 		
