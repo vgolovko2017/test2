@@ -48,18 +48,18 @@
 		$today = date("Y-n-j");	
 
 		try {
-			$stmt = $dbh->prepare("SELECT cdate FROM currex where cdate = '$today' and '"
-						. $hash->currency->cc . "' = '$cc'");
+			$stmt = $dbh->prepare("SELECT cdate FROM currex where cdate = '$today' and "
+						. $dbh->quote($hash->currency->cc) . " = '$cc'");
 			$stmt->execute();
 			$rs = $stmt->fetch(PDO::FETCH_OBJ);
 		} catch (PDOException $e) {
 			logIt("Error!: " . $e->getMessage());
 			return false;				
 		}
-			
+
 		if (is_object($rs)) {
-			$query = "update currex set cexchange = '" . $hash->currency->rate
-						. "' where cdate = '$today'";
+			$query = "update currex set cexchange = " . $dbh->quote($hash->currency->rate)
+						. " where cdate = '$today'";
 //echo $query;
 			try {
 				$stmt = $dbh->prepare($query);
@@ -70,8 +70,8 @@
 			}
 		}	
 		else {
-			$query = "insert into currex set cexchange = '" . $hash->currency->rate
-						. "', cdate = '$today', currency = '" . $hash->currency->cc . "'";
+			$query = "insert into currex set cexchange = " . $dbh->quote($hash->currency->rate)
+						. ", cdate = '$today', currency = " . $dbh->quote($hash->currency->cc);
 //echo $query;
 			try {
 				$stmt = $dbh->prepare($query);
