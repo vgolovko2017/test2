@@ -10,7 +10,7 @@
 		private $db = DB;
 
 		/*
-		Get an instance of the Database in the dev 1
+		Get an instance of the Database in the dev 12
 		@return Instance
 		*/
 		public static function getInstance() {
