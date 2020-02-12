@@ -10,7 +10,7 @@
 		private $db = DB;
 
 		/*
-		Get an instance of the Database
+		Get an instance of the Database and other's
 		@return Instance
 		*/
 		public static function getInstance() {
