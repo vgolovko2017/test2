@@ -16,6 +16,8 @@
 	
 	$dbInfo = new GetInfoFromDb();
 
+
+
 	return $dbInfo->getExchangeByDate($date);
 	
 		
