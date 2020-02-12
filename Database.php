@@ -14,7 +14,7 @@
 		@return Instance
 		*/
 		public static function getInstance() {
-			if(!self::$instance) { // If no instance then make one
+			if(!self::$instance) { /* If no instance then make one */
 				self::$instance = new self();
 			}
 		
@@ -32,10 +32,10 @@
 			}
 		}
 
-		// Magic method clone is empty to prevent duplication of connection	
+		/* Magic method clone is empty to prevent duplication of connection */
 		private function __clone() { }
 
-		// Get mysqli connection
+		/* Get mysqli connection */
 		public function getConnection() {
 			return $this->connection !== false ? $this->connection : false;
 		}
